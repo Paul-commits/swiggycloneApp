@@ -44,7 +44,7 @@ const FoodByResturant: React.FC<{}> = () => {
                         </div>
                         <div className='flex text-base font-normal text-slate-500 flex-wrap'>
                           {item?.info?.cuisines.map((cuisine : string , index:number) => (
-                            <div className='mr-1'key={cuisine}>
+                            <div className='mr-1 text-ellipsis overflow-hidden'key={cuisine}>
                               {cuisine}
                               {index !== item.info.cuisines.length - 1 && ','}
                             </div>
