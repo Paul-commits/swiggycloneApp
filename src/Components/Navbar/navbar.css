@@ -1,0 +1,7 @@
+.link-style {
+    @apply flex items-center font-medium cursor-pointer;
+  }
+
+.navbar-li-style{
+  @apply font-medium hover:text-orange-500;
+}
