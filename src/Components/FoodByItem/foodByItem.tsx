@@ -8,10 +8,6 @@ import "./foodByItem.css";
 import Scroller from '../Scroller/scroller';
 
 const FoodByItem:React.FC<{}> =() => {
-
-    console.log("Food by item conponent")
-
-    // const [menuByFood, setMenuByFood] = useState<any>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -19,10 +15,8 @@ const FoodByItem:React.FC<{}> =() => {
     
     const resturantByFoodItems = useSelector((state : any) => state?.resturantData?.resturantData !== null && state?.resturantData?.resturantData[0]);
     
-    console.log(resturantByFoodItems, "food item")
     
     useEffect(() => {
-        console.log("HI from useEffect")
         getMenuDetails()
     }, [])
     
@@ -51,7 +45,6 @@ const FoodByItem:React.FC<{}> =() => {
     //   }
 
     const getMenuDetails = async () => {
-        // debugger
         try {
             setIsLoading(true);
             const targetUrl = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9689968&lng=77.72088529999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
@@ -61,7 +54,6 @@ const FoodByItem:React.FC<{}> =() => {
             if (response.ok) {
                 let resp = await response.json();
                 const menuData = JSON.parse(resp.contents); 
-                // setMenuByFood(menuData.data.cards[0]);
                 setIsLoading(false)
                 dispatch(getResturantData(menuData.data.cards))
                 
@@ -71,16 +63,11 @@ const FoodByItem:React.FC<{}> =() => {
         }
     };
     
-    
-    // console.log(menuByFood, "menuByFood")
-    
-    // getMenuDetails()
     return (
         <>
             {isLoading && <Loader />}
             {resturantByFoodItems !== null &&
             <div className='custom-margin overflow-hidden '>
-            <div >
                     <div className='flex justify-between mb-5'>
                         <div>
                             <h1 className='text-3xl font-bold'>{resturantByFoodItems?.card?.card?.header?.title}</h1>
@@ -105,7 +92,6 @@ const FoodByItem:React.FC<{}> =() => {
                         ))}
                     </div>
                     <hr className='font-bold margin-hr'/>
-            </div>
             </div>
             }
         </>

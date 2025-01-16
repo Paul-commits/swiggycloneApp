@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .custom-margin {
+    margin-left: calc(10% + 36px);
+    margin-right: calc(10% + 36px);
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar{
+    display: none;
+}
+
+@layer utilities{
+    .margin-hr{
+      margin: 32px calc(10% + 52px)
+    }
+  }
