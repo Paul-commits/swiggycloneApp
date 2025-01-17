@@ -4,8 +4,8 @@
 
 @layer utilities {
   .custom-margin {
-    margin-left: calc(10% + 36px);
-    margin-right: calc(10% + 36px);
+    margin-left: calc(5% + 36px);
+    margin-right: calc(5% + 36px);
   }
 }
 

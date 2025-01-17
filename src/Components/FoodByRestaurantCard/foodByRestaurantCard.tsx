@@ -3,20 +3,26 @@ import "./foodByRestaurantCard.css"
 import { MdStars } from "react-icons/md"
 import { GoDotFill } from "react-icons/go"
 
-const FoodByResturantCard: React.FC<any> = ({resturantDetails ,scrollContainerRef }) => {
+const FoodByResturantCard: React.FC<any> = ({restaurantDetails ,scrollContainerRef , isScrollEnabled = true}) => {
 
   return (  
     <>
-        <div className='flex overflow-x-auto gap-5 p-4 scrollbar-hide' ref={scrollContainerRef}>
-            {resturantDetails.map((item : any) => (
-              <div key={item.info.id} className='flex-none w-72 rounded-lg'>
+        <div className={`flex gap-5 p-4 overflow-x-auto scrollbar-hide ${!isScrollEnabled && 'overflow-x-auto flex-wrap '}`} ref={scrollContainerRef}>
+            {restaurantDetails.map((item : any) => (
+              <div key={item.info.id} className='flex-none w-60 rounded-lg'>
                 <a className='block'key={item.info.id} href="hs">
-                  <div className=' overflow-hidden'>
-                      <img className='w-full h-52 object-fit rounded-lg'
+                  <div className={`relative overflow-hidden ${! isScrollEnabled && 'overflow-hidden'}`}>
+                      <img className='w-full h-44 object-fit rounded-lg'
                         src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${item.info.cloudinaryImageId}`} 
                         alt=""
                       />
-                    <div>
+                  <div>
+                  <div>
+                    <span 
+                      className='absolute font-extrabold text-xl text-white mt-[-35px] ml-2'>
+                          {`${item?.info?.aggregatedDiscountInfoV3?.header ? item?.info?.aggregatedDiscountInfoV3?.header : '' } 
+                          ${item?.info?.aggregatedDiscountInfoV3?.subHeader ? item?.info?.aggregatedDiscountInfoV3?.subHeader : ''}`}</span>
+                  </div>
                       <div className='flex flex-col'>
                         <div className='font-bold text-lg'>{item?.info?.name}</div>
                         <div className='flex items-center'>

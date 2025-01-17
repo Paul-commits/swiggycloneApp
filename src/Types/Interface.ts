@@ -21,3 +21,11 @@ export interface ScrollRef{
     refDetails : React.RefObject<HTMLDivElement | null>
 }
 
+export interface ResAndCue{
+    text:string,
+    link:string
+}
+
+export interface ResAndCueButtons {
+    restAndCueList:ResAndCue[]
+}
