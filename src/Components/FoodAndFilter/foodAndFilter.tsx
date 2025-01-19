@@ -22,8 +22,9 @@ const FoodAndFilter:React.FC<{}> = ()  => {
                     <FoodByResturantCard restaurantDetails={restaurantData} scrollContainerRef={null} isScrollEnabled={false}/>
                 </div>
             </div>
+            <hr className='font-bold margin-hr'/>
         </div>
-}
+        }
         </>
   )
 }

@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities{
+    .margin-hr{
+      margin: 32px calc(10% + 52px)
+    }
+  }

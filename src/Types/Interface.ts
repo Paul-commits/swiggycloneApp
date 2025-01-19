@@ -28,4 +28,5 @@ export interface ResAndCue{
 
 export interface ResAndCueButtons {
     restAndCueList:ResAndCue[]
+    isShowMoreEnabled: boolean
 }
