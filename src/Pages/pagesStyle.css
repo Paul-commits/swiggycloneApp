@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .custom-margin {
+    margin-left: calc(10% + 20px);
+    margin-right: calc(10% + 20px);
+  }
+}

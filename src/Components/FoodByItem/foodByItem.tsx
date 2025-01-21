@@ -13,7 +13,7 @@ const FoodByItem:React.FC<{}> =() => {
 
     const dispatch = useDispatch()
     
-    const resturantByFoodItems = useSelector((state : any) => state?.resturantData?.resturantData !== null && state?.resturantData?.resturantData[0]);
+    const resturantByFoodItems = useSelector((state : any) => state?.resturantData?.resturantData && state?.resturantData?.resturantData[0]);
     
     
     useEffect(() => {
@@ -23,39 +23,44 @@ const FoodByItem:React.FC<{}> =() => {
     
     
     // const getMenuDetails = async() => {
-        //     try {
+    //         try {
     //         setIsLoading(true)
     //         const proxyUrl = "https://cors-anywhere.herokuapp.com/";
     //         const targetUrl = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9689968&lng=77.72088529999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
     
     //         let response = await fetch(proxyUrl + targetUrl, {
-        //             headers: {
+    //                 headers: {
     //                 'X-Requested-With': 'XMLHttpRequest'
     //             }
     //         });
     
     //         if (response.ok) {
     //             let resp = await response.json();
-    //             setMenuByFood(resp.data.cards[0]);
+    //             const menuData = JSON.parse(resp.contents);    
+    //             dispatch(getResturantData(menuData.data.cards))
+
     //             setIsLoading(false)
     //         }
     //     } catch (err) {
-        //         console.error(err);
-        //     }
+    //             console.error(err);
+    //         }
     //   }
 
     const getMenuDetails = async () => {
         try {
             setIsLoading(true);
             const targetUrl = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9689968&lng=77.72088529999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
-            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+            const proxyUrl = `${encodeURIComponent(targetUrl)}`;
             
-            let response = await fetch(proxyUrl);
+            let response = await fetch(targetUrl);
+    
             if (response.ok) {
                 let resp = await response.json();
-                const menuData = JSON.parse(resp.contents); 
+                console.log(resp, "resp")
+                // const menuData = JSON.parse(resp.contents); 
+                // console.log(menuData, "menuData")
                 setIsLoading(false)
-                dispatch(getResturantData(menuData.data.cards))
+                dispatch(getResturantData(resp.data.cards))
                 
             }
         } catch (err) {
@@ -66,7 +71,7 @@ const FoodByItem:React.FC<{}> =() => {
     return (
         <>
             {isLoading && <Loader />}
-            {resturantByFoodItems !== null &&
+            {resturantByFoodItems !== null && 
             <div className='custom-margin overflow-hidden '>
                     <div className='flex justify-between mb-5'>
                         <div>

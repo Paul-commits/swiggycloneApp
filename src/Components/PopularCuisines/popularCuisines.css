@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities{
+    .cutomHeight{
+        width: calc(-13.1765px + 5.88235vw);
+        height: calc(-18.7245px + 8.35913vw);
+        min-width: calc(-13.1765px + 5.88235vw);
+        min-height: calc(-18.7245px + 8.35913vw);
+    }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
