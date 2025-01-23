@@ -16,8 +16,8 @@ const PopularCuisinesList : React.FC<PopularCuisineList>= ({selectedDish}) => {
 
     const popularCuisinesData = useSelector((state :any) => state.searchData.popularCuisinesData.suggestions);
 
-    console.log(popularCuisinesData, "popular cuisines data")
-
+    console.log(popularCuisinesData, "popularCuisinesData")
+    
     useEffect(() => {
         if(data){
             dispatch(setCuisinesData(data.data))
@@ -26,7 +26,9 @@ const PopularCuisinesList : React.FC<PopularCuisineList>= ({selectedDish}) => {
 
   return (
     popularCuisinesData &&
-    <div><PopularCuisinesCard cuisinesData={popularCuisinesData}/></div>
+    <div>
+        <PopularCuisinesCard cuisinesData={popularCuisinesData}/>
+    </div>
   )
 }
 

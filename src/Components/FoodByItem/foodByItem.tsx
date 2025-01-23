@@ -57,8 +57,6 @@ const FoodByItem:React.FC<{}> =() => {
             if (response.ok) {
                 let resp = await response.json();
                 console.log(resp, "resp")
-                // const menuData = JSON.parse(resp.contents); 
-                // console.log(menuData, "menuData")
                 setIsLoading(false)
                 dispatch(getResturantData(resp.data.cards))
                 
@@ -72,20 +70,19 @@ const FoodByItem:React.FC<{}> =() => {
         <>
             {isLoading && <Loader />}
             {resturantByFoodItems !== null && 
-            <div className='custom-margin overflow-hidden '>
-                    <div className='flex justify-between mb-5'>
+                <div className='custom-margin overflow-hidden bg-white mt-4'>
+                    <div className='flex justify-between mb-5 bg-white'>
                         <div>
                             <h1 className='text-3xl font-bold'>{resturantByFoodItems?.card?.card?.header?.title}</h1>
                         </div>
                         <Scroller refDetails={scrollContainerRef}/>
                     </div>
-                    <div className='flex bg-transparent overflow-scroll scrollbar-hide'
-                        ref={scrollContainerRef}>
+                    <div className='flex bg-transparent overflow-scroll scrollbar-hide'ref={scrollContainerRef}>
                         {resturantByFoodItems?.card?.card?.imageGridCards?.info?.map((item : any) => (
                             <div
                                 key={item.id}>
                                 <a className='cursor-pointer' href='as'>
-                                    <div className='h-45 w-36 mr-4'>
+                                    <div className='h-45 w-36 mr-4 '>
                                         <img 
                                             src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/${item.imageId}`} 
                                             className='bg-inherit'
@@ -97,10 +94,10 @@ const FoodByItem:React.FC<{}> =() => {
                         ))}
                     </div>
                     <hr className='font-bold margin-hr'/>
-            </div>
+                </div>
             }
         </>
-        )
+    )
 }
 
 export default FoodByItem

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import {setSearchData} from "../../Slices/searchDataSlice"
 import useFetch from '../../CustomHooks/useFetch'
 import {CardsData} from "../../Types/Interface"
-import "../../Components/commonStyles.css"
 import "./popularCuisines.css"
 import PopularCuisinesList from './popularCuisinesList'
 
@@ -33,25 +32,29 @@ const PopularCuisines: React.FC<{}> = () => {
 
   return (
     searchDataItems && searchDataItems !==null &&
-    <div className='relative w-full'>
-        <div className='pb-2 sticky w'>
-            <h1 className='text-2xl font-bold ml-4'>{searchDataHeader.title}</h1>
-        </div>
-        <div className='flex my-2 pt-3 px-6 pb-6 overflow-scroll scrollbar-hide'>
-            {searchDataItems.map((item:any) => (
-                <div className='cutomHeight mr-[10px]' key={item.id}>
-                <button className='w-full h-full' onClick={() => handleSelectDish(item.action.link)}>
-                    <img 
-                        src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/${item.imageId}`} 
-                        alt={item.action.text}
-                    />
-                </button>
+    <div className='relative w-[860px] my-0 mx-auto min-h-[calc(100vh-70px)]'>
+        <div className='overflow-x-hidden'>
+            <div className='pt-6 pl-4'>
+                <h1 className='text-2xl font-bold ml-4'>{searchDataHeader.title}</h1>
+            </div>
+            <div className='pt-3 px-1 pl-6 my-2 '>
+                <div className='flex overflow-x-scroll overflow-y-hidden scrollbar-hide'>
+                    {searchDataItems.map((item:any) => (
+                        <div className='cutomHeight mr-[10px]' key={item.id}>
+                            <button className='w-full h-full' onClick={() => handleSelectDish(item.action.link)}>
+                                <img 
+                                    src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/${item.imageId}`} 
+                                    alt={item.action.text}
+                                />
+                            </button>
+                        </div>
+                     ))}
                 </div>
-            ))}
+            </div>
         </div>
-        <div>
-            {selectedDish !=='' && <PopularCuisinesList selectedDish={selectedDish} />}
-        </div>
+    <div>
+        {selectedDish !=='' && <PopularCuisinesList selectedDish={selectedDish} />}
+    </div>
     </div>
   )
 }

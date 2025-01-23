@@ -39,16 +39,8 @@ export interface UseFetchResponse<T> {
     data: T | null;
     loading: boolean;
     error: string | null
-    
 }
 
-export interface UseFetchResponseSlice {
-    searchData: [];
-    popularCuisinesData:[];
-    loading: boolean;
-    error: string | null
-    
-}
 
 export interface CardsData {
     data: {
@@ -72,7 +64,7 @@ export interface Marketplace {
     link: string;
   }
   
-  export interface Item {
+  export interface CuisineDataItem {
     text: string;
     highlightedText: string;
     type: string;
@@ -91,7 +83,17 @@ export interface Marketplace {
     disabled?: boolean;
   }
   
-  export interface SuggestionsProps {
-    cuisinesData: Item[];
+  export interface CuisinesDataProps {
+    cuisinesData: CuisineDataItem[];
   }
+
+
+  export interface UseFetchResponseSlice {
+    searchData: [];
+    popularCuisinesData: CuisineDataItem[];
+    // popularCuisinesData2: {cuisineDishes : CuisineDataItem[], selectedDish: string};
+    loading: boolean;
+    error: string | null
+}
+
   

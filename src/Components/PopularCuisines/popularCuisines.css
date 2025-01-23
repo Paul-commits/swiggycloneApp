@@ -1,4 +1,4 @@
-@tailwind base;
+@tailwind  base;
 @tailwind components;
 @tailwind utilities;
 
@@ -15,3 +15,13 @@
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+.flex-start{
+    align-content: flex-start !important;
+}
+
+/* .cuisinceCardStyle{
+    overflow-y: auto;
+    height: calc(100vh - 200px);
+} */
+

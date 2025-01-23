@@ -4,6 +4,7 @@ import {UseFetchResponseSlice} from "../Types/Interface"
 const initialState : UseFetchResponseSlice = {
     searchData: [],
     popularCuisinesData:[],
+    // popularCuisinesData2:{cuisineDishes : [], selectedDish:""},
     loading: false,
     error:null
 }

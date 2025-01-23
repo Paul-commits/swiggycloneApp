@@ -14,6 +14,7 @@ import PageNotFound from "./Pages/pageNotFound";
 
 function App() {
   return (
+    <div className="relative pt-20 flex flex-col">
       <BrowserRouter>
       <Navbar />
         <Routes>
@@ -28,6 +29,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
+    </div>
   );
 }
 

@@ -1,12 +1,12 @@
-import React from 'react'
 import PopularCuisines from '../Components/PopularCuisines/popularCuisines'
-import SearchByPopularCuisines from '../Components/SearchByPopularCuisines/searchByPopularCuisines'
+import SearchByPopularCuisines from '../Components/PopularCuisines/searchByPopularCuisines'
+import "./pagesStyle.css";
 
 export default function Search() {
   return (
-    <div className='custom-margin w-[860px] flex flex-col justify-center mx-auto'>
-      <SearchByPopularCuisines />
-      <PopularCuisines />
+    <div className='flex-grow' >
+        <SearchByPopularCuisines />
+        <PopularCuisines />
     </div>
   )
 }

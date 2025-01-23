@@ -8,3 +8,8 @@
     margin-right: calc(10% + 20px);
   }
 }
+
+.restaurantStyle{
+  overflow-y: auto;
+  min-height: calc(100vh - 70px);
+}

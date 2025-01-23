@@ -11,7 +11,7 @@ const FoodByResturantCard: React.FC<any> = ({restaurantDetails ,scrollContainerR
             {restaurantDetails.map((item : any) => (
               <div key={item.info.id} className='flex-none w-60 rounded-lg'>
                 <a className='block'key={item.info.id} href="hs">
-                  <div className={`relative overflow-hidden ${! isScrollEnabled && 'overflow-hidden'}`}>
+                  <div className={`relative overflow-hidden bg-white ${! isScrollEnabled && 'overflow-hidden'}`}>
                       <img className='w-full h-44 object-fit rounded-lg'
                         src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${item.info.cloudinaryImageId}`} 
                         alt=""
