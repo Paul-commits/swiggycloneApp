@@ -90,8 +90,8 @@ export interface Marketplace {
 
   export interface UseFetchResponseSlice {
     searchData: [];
-    popularCuisinesData: CuisineDataItem[];
-    // popularCuisinesData2: {cuisineDishes : CuisineDataItem[], selectedDish: string};
+    // popularCuisinesData: CuisineDataItem[];
+    popularCuisinesData: {cuisineDishes : CuisineDataItem[], isSubmitEnabled : boolean, isResetEnabled : boolean, selectedDish: string };
     loading: boolean;
     error: string | null
 }

@@ -3,8 +3,7 @@ import {UseFetchResponseSlice} from "../Types/Interface"
 
 const initialState : UseFetchResponseSlice = {
     searchData: [],
-    popularCuisinesData:[],
-    // popularCuisinesData2:{cuisineDishes : [], selectedDish:""},
+    popularCuisinesData:{cuisineDishes : [], isResetEnabled: false ,  isSubmitEnabled: true, selectedDish:''},
     loading: false,
     error:null
 }
@@ -17,11 +16,21 @@ const searchData = createSlice({
             state.searchData = action.payload
         },
         setCuisinesData:(state, action) => {
-            state.popularCuisinesData =action.payload
+            state.popularCuisinesData.cuisineDishes =action.payload
+            state.popularCuisinesData.selectedDish = action.payload.query;
+            state.popularCuisinesData.isSubmitEnabled = false;
+            state.popularCuisinesData.isResetEnabled = true;
+            console.log(action, "action")
+        },
+        handleCuisineReset : (state) => {
+            state.popularCuisinesData.cuisineDishes =[]
+            state.popularCuisinesData.isResetEnabled = false;
+            state.popularCuisinesData.isSubmitEnabled = true;
+            state.popularCuisinesData.selectedDish = ''
         }
     }
 })
 
 
-export const {setSearchData, setCuisinesData} = searchData.actions
+export const {setSearchData, setCuisinesData, handleCuisineReset} = searchData.actions
 export default searchData.reducer

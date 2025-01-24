@@ -9,12 +9,11 @@ import PopularCuisinesCard from './popularCuisinesCard'
 const PopularCuisinesList : React.FC<PopularCuisineList>= ({selectedDish}) => {
 
     const dispatch = useDispatch()
-    console.log(selectedDish, "selectedDish")
     const {data, loading, error} = useFetch<CardsData>({
         url: `https://www.swiggy.com/dapi/restaurants/search/suggest?lat=12.89960&lng=80.22090&str=${selectedDish}&trackingId=null&includeIMItem=true`
     })
 
-    const popularCuisinesData = useSelector((state :any) => state.searchData.popularCuisinesData.suggestions);
+    const popularCuisinesData = useSelector((state :any) => state.searchData.popularCuisinesData.cuisineDishes.suggestions);
 
     console.log(popularCuisinesData, "popularCuisinesData")
     
