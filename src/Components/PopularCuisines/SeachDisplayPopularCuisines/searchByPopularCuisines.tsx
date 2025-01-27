@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import {handleCuisineReset} from '../../Slices/searchDataSlice'
+import {setCuisineReset} from '../../../Slices/searchDataSlice'
 import { RiArrowLeftSLine } from "react-icons/ri";
 import { IoSearch } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
@@ -9,8 +9,10 @@ const SearchByPopularCuisines = () =>  {
 
   const dispatch = useDispatch()
   const[userDish, setUserDish] = useState("")
-  const selectedDish = useSelector((state: any) => state.searchData.popularCuisinesData.selectedDish)
+  const selectedDish = useSelector((state: any) => state.popularCuisinesData.selectedPopularCuisine.selectedDish)
+  const selectedDish2 = useSelector((state: any) => state.popularCuisinesData.selectedPopularCuisine.selectedDish)
 
+  console.log(selectedDish2, "selectedDish2")
   useEffect(() => {
     setUserDish(selectedDish)
   }, [selectedDish])
@@ -19,7 +21,7 @@ const SearchByPopularCuisines = () =>  {
   const handleSearch =(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if(e.type === 'reset'){
-      dispatch(handleCuisineReset())
+      dispatch(setCuisineReset())
     }
   }
 

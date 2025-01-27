@@ -1,12 +1,20 @@
 import React from 'react'
-import { CuisinesDataProps } from '../../Types/Interface'
-import "../PopularCuisines/popularCuisines.css"
+import { CuisinesDataProps } from '../../../Types/Interface'
+import "../popularCuisines.css"
     
-const PopularCuisinesCard: React.FC<CuisinesDataProps> = ({cuisinesData}) => {
+const PopularCuisinesCard: React.FC<CuisinesDataProps> = ({cuisinesData, displayCuisinesRestaurants}) => {
+
+    const handleSelectedDish = (index: number) => {
+        displayCuisinesRestaurants(index)
+    }
+
     return (
         <div>
-            {cuisinesData.map((item) => (
-                <button className='flex ml-4 px-4 py-4 items-center w-full hover:bg-sky-50' key={item.cloudinaryId}>
+            {cuisinesData.map((item, index) => (
+                <button className='flex ml-4 px-4 py-4 items-center w-full hover:bg-sky-50' 
+                    key={item.cloudinaryId}
+                    onClick={() => handleSelectedDish(index)}
+                    >
                     <div className='w-16 h-16'>
                         <img 
                             src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_112,h_112,c_fill/${item.cloudinaryId}`}

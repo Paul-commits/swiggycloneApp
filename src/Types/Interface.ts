@@ -85,15 +85,22 @@ export interface Marketplace {
   
   export interface CuisinesDataProps {
     cuisinesData: CuisineDataItem[];
+    displayCuisinesRestaurants: (index: number | null) => void; 
   }
 
 
   export interface UseFetchResponseSlice {
-    searchData: [];
-    // popularCuisinesData: CuisineDataItem[];
-    popularCuisinesData: {cuisineDishes : CuisineDataItem[], isSubmitEnabled : boolean, isResetEnabled : boolean, selectedDish: string };
+    popularCuisinesList: [];
+    selectedPopularCuisine: {
+        cuisineDishes : CuisineDataItem[], 
+        isSubmitEnabled : boolean,
+        isResetEnabled : boolean,
+        selectedDish: string,
+        filteredRestaurants:[]
+    };
     loading: boolean;
-    error: string | null
+    error: string | null;
+   
 }
 
   

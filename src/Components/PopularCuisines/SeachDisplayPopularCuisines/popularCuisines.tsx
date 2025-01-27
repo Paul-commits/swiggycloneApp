@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {setSearchData} from "../../Slices/searchDataSlice"
-import useFetch from '../../CustomHooks/useFetch'
-import {CardsData} from "../../Types/Interface"
-import "./popularCuisines.css"
+import {setPopularCuisines} from "../../../Slices/searchDataSlice"
+import useFetch from '../../../CustomHooks/useFetch'
+import {CardsData} from "../../../Types/Interface"
+import "../popularCuisines.css"
 import PopularCuisinesList from './popularCuisinesList'
 
 
@@ -12,22 +12,21 @@ const PopularCuisines: React.FC<{}> = () => {
     const dispatch = useDispatch()
     const [selectedDish, setSelectedDish] = useState<string>("");
     
-    const searchDataHeader = useSelector((state : any) => state?.searchData?.searchData && state?.searchData?.searchData?.header)
-    const searchDataItems = useSelector((state : any) => state?.searchData?.searchData && state?.searchData?.searchData?.imageGridCards?.info)
-    const userdDish = useSelector((state: any) => state.searchData.popularCuisinesData.selectedDish)
+    const searchDataHeader = useSelector((state : any) => state?.popularCuisinesData?.popularCuisinesList && state?.popularCuisinesData?.popularCuisinesList?.header)
+    const searchDataItems = useSelector((state : any) => state?.popularCuisinesData?.popularCuisinesList && state?.popularCuisinesData?.popularCuisinesList?.imageGridCards?.info)
+    const userdDish = useSelector((state: any) => state.popularCuisinesData.selectedPopularCuisine.selectedDish)
 
     useEffect(() => {
         setSelectedDish(userdDish)
       }, [userdDish])
 
-    console.log(selectedDish, "selectedDish")
     const {data, loading, error} = useFetch<CardsData>({
         url: "https://www.swiggy.com/dapi/landing/PRE_SEARCH?lat=12.9743773&lng=77.7151616"
     })
 
     useEffect(() => {
         if(data){
-            dispatch(setSearchData(data.data.cards[1].card.card))
+            dispatch(setPopularCuisines(data.data.cards[1].card.card))
         }
     }, [data])
 
@@ -43,6 +42,8 @@ const PopularCuisines: React.FC<{}> = () => {
             <div className='pt-6 pl-4'>
                 <h1 className='text-2xl font-bold ml-4'>{searchDataHeader.title}</h1>
             </div>
+            <div></div>
+            <div></div>
             <div className='pt-3 px-1 pl-6 my-2'>
                 <div className={`flex overflow-x-scroll overflow-y-hidden scrollbar-hide ${selectedDish !== '' && 'hidden'}`}>
                     {searchDataItems.map((item:any) => (

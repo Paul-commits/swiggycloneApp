@@ -1,5 +1,5 @@
-import PopularCuisines from '../Components/PopularCuisines/popularCuisines'
-import SearchByPopularCuisines from '../Components/PopularCuisines/searchByPopularCuisines'
+import PopularCuisines from '../Components/PopularCuisines/SeachDisplayPopularCuisines/popularCuisines'
+import SearchByPopularCuisines from '../Components/PopularCuisines/SeachDisplayPopularCuisines/searchByPopularCuisines'
 import "./pagesStyle.css";
 
 export default function Search() {
