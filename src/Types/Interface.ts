@@ -96,7 +96,8 @@ export interface Marketplace {
         isSubmitEnabled : boolean,
         isResetEnabled : boolean,
         selectedDish: string,
-        filteredRestaurants:[]
+        filteredRestaurants:[],
+        restaurantsDishes :[]
     };
     loading: boolean;
     error: string | null;

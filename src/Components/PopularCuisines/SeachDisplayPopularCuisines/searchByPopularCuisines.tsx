@@ -10,9 +10,7 @@ const SearchByPopularCuisines = () =>  {
   const dispatch = useDispatch()
   const[userDish, setUserDish] = useState("")
   const selectedDish = useSelector((state: any) => state.popularCuisinesData.selectedPopularCuisine.selectedDish)
-  const selectedDish2 = useSelector((state: any) => state.popularCuisinesData.selectedPopularCuisine.selectedDish)
 
-  console.log(selectedDish2, "selectedDish2")
   useEffect(() => {
     setUserDish(selectedDish)
   }, [selectedDish])

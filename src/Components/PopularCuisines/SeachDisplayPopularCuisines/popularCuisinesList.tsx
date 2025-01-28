@@ -9,54 +9,41 @@ import CuisinesRestaurants from '../PopularCuisinesRestaurants/cuisinesRestauran
 
 const PopularCuisinesList : React.FC<PopularCuisineList>= ({selectedDish}) => {
 
-    const [displayCuisinesRestaurants, setDisplayCuisinesRestaurants] = useState<number | null>(null);
-    
-    console.log(displayCuisinesRestaurants, "displayCuisinesRestaurants")
+    const [cuisineRestaurantIndex, setCuisineRestaurantIndex] = useState<number | null>(null);
     
     const dispatch = useDispatch()
     const {data, loading, error} = useFetch<CardsData>({
         url: `https://www.swiggy.com/dapi/restaurants/search/suggest?lat=12.89960&lng=80.22090&str=${selectedDish}&trackingId=null&includeIMItem=true`
     })
 
-    const popularCuisinesData = useSelector((state :any) => state.popularCuisinesData.selectedPopularCuisine.cuisineDishes.suggestions);
-
-    console.log(popularCuisinesData, "popularCuisinesData")
-
-    const filterSelectedDish = (index: number) => {
-        const filteredRestaurants = popularCuisinesData?.filter((_: any, i: number) => i === index);
-        console.log(filteredRestaurants, "filteredRestaurants");
-        dispatch(setFilteredRestaurants(filteredRestaurants))
-
-    };
-
+    const popularCuisinesData = useSelector((state :any) =>   state?.popularCuisinesData?.selectedPopularCuisine?.cuisineDishes?.suggestions);
     
     useEffect(() => {
         if(data){
             dispatch(setSelectedPopularCuisine(data.data))
         }
-    }, [data])
+    }, [data, dispatch])
 
     useEffect(() => {
-        if (popularCuisinesData && displayCuisinesRestaurants !==null ){
-            filterSelectedDish(displayCuisinesRestaurants && displayCuisinesRestaurants)
+        if (popularCuisinesData && cuisineRestaurantIndex !==null ){
+            const filteredRestaurants = popularCuisinesData?.filter((_: any, i: number) => i === cuisineRestaurantIndex);
+            console.log(filteredRestaurants, "filteredRestaurants");
+            dispatch(setFilteredRestaurants(filteredRestaurants))
         }
-    }, [filterSelectedDish])
+    }, [popularCuisinesData, cuisineRestaurantIndex, dispatch])
 
   return (
     popularCuisinesData && 
     <div>
-        <div>
-            <PopularCuisinesCard cuisinesData={popularCuisinesData} 
-            displayCuisinesRestaurants={setDisplayCuisinesRestaurants}
+        {cuisineRestaurantIndex === null ? (
+            <PopularCuisinesCard 
+                cuisinesData={popularCuisinesData} 
+                displayCuisinesRestaurants={setCuisineRestaurantIndex}
             />
-        </div>
-        {
-            displayCuisinesRestaurants!== null &&
-
-        <div>
+        ) : (
+            data && 
             <CuisinesRestaurants />
-        </div>
-        }
+        )}
     </div>
   )
 }

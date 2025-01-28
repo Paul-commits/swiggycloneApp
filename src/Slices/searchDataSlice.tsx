@@ -8,7 +8,8 @@ const initialState : UseFetchResponseSlice = {
         isResetEnabled: false,  
         isSubmitEnabled: true, 
         selectedDish:'',
-        filteredRestaurants:[]
+        filteredRestaurants:[], 
+        restaurantsDishes : []
     },
     loading: false,
     error:null
@@ -31,15 +32,20 @@ const searchData = createSlice({
             state.selectedPopularCuisine.cuisineDishes =[]
             state.selectedPopularCuisine.isResetEnabled = false;
             state.selectedPopularCuisine.isSubmitEnabled = true;
-            state.selectedPopularCuisine.selectedDish = ''
+            state.selectedPopularCuisine.selectedDish = '';
+            state.selectedPopularCuisine.filteredRestaurants =[]
+
         },
         setFilteredRestaurants : (state, action) => {
             state.selectedPopularCuisine.filteredRestaurants =action.payload
+        },
+        setRestaurantsDishes : (state, action) => {
+            state.selectedPopularCuisine.restaurantsDishes = action.payload
         }
 
     }
 })
 
 
-export const {setPopularCuisines, setSelectedPopularCuisine, setCuisineReset, setFilteredRestaurants} = searchData.actions
+export const {setPopularCuisines, setSelectedPopularCuisine, setCuisineReset, setFilteredRestaurants,setRestaurantsDishes} = searchData.actions
 export default searchData.reducer
